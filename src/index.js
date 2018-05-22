@@ -8,13 +8,18 @@ import { createStore, combineReducers, applyMiddleware, } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const firstReducer = (state, action) => {
-    return {}; //return next state
+const mainReducer = (state = [], action) => {
+    if (action.type === 'ADD_BUTTON') {
+
+        console.log('I am the mainReducer!')
+        return [...state, state.payload];
+    }
+    return state;
 }
 
 const storeInstance = createStore(
     combineReducers({
-        firstReducer
+        mainReducer
     }),
     applyMiddleware(logger),
 );
